@@ -1,0 +1,29 @@
+name: Generate Index.html
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Generate index.html
+      run: |
+        echo "<html><body><ul>" > index.html
+        for file in $(find . -type f -not -name "index.html" -not -path "./.git/*" -not -name ".nojekyll" | sort); do
+          echo "<li><a href='$file'>$file</a></li>" >> index.html
+        done
+        echo "</ul></body></html>" >> index.html
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git add index.html
+        git commit -m "Generated index.html file"
+        git push
