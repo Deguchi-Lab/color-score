@@ -1,0 +1,24 @@
+title=[test8m2b4]
+composer=[test]
+lyricist=[test]
+copyright=[]
+key=[0]
+tempo=[]
+minimum=[8]
+beat=[2/4]
+measure=[4]
+-	=1	
+C4	0	4	C	
+D4	0	4	D	
+-	=2	
+E4	0	4	E	
+F4	0	8	F	
+G4	0	8	G	
+-	=3	
+A4	0	8	A	
+B4	0	8	B	
+C5	0	8	C	
+D5	0	8	D	
+-	=4	
+0	0	4	 	
+00	0	4	 	

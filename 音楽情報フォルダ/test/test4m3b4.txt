@@ -1,0 +1,29 @@
+title=[test4m3b4]
+composer=[test]
+lyricist=[test]
+copyright=[]
+key=[0]
+tempo=[]]
+minimum=[4]
+beat=[3/4]
+measure=[5]
+-	=1	
+C4	0	4	C	
+D4	0	4	D	
+E4	0	4	E	
+-	=2	
+F4	0	4	F	
+G4	0	4	G	
+A4	0	4	A	
+-	=3	
+B4	0	4	B	
+C5	0	4	C	
+D5	0	4	D	
+-	=4	
+E5	0	4	E	
+F5	0	4	F	
+G5	0	4	G	
+-	=5	
+0 	0	4	 	
+C4	0	4	C	
+00	0	4	 	

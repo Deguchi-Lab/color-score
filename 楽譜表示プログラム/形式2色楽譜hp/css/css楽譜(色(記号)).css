@@ -1,0 +1,293 @@
+/* 2018年度 知能情報処理研究室 */
+
+#textbox{
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+}
+
+#titlebox{
+    font-size: 28px;
+}
+
+#composerbox,#lyricistbox{
+    float: left;
+    width: 50%;
+    font-size: 22px;
+}
+
+#copyrightbox{
+    font-size: 18px;
+    text-align: left;
+    border-bottom: solid 1px black;
+}
+
+#tempobox{
+    text-align: left;
+}
+
+table.table4m2b4k{	/*2/4拍子の最小音価が4分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;	/*中央揃え*/
+	width: 100%;	/*幅の指定*/
+	table-layout:fixed;	/*テーブル（表）の列幅を固定*/
+}
+table.table4m2b4k tr.c1,tr.c2,tr.c3,tr.c4{	/*1,2,3,4行目指定*/
+	background-color:#CEF6CE;	/*背景色*/
+}
+table.table4m2b4k tr.c1{	/*1行目指定*/
+	font-size:70%;	/*文字の大きさ指定*/
+	height: 20px;	/*高さ指定*/
+}
+table.table4m2b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m2b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table4m2b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m2b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m2b4k{	/*2/4拍子の最小音価が8分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table8m2b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table8m2b4k tr.c1{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m2b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m2b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m2b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m2b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table16m2b4k{	/*2/4拍子の最小音価が16分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table16m2b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table16m2b4k tr.c1{
+	font-size:130%;
+	height: 50px;
+}
+table.table16m2b4k tr.c2{
+	font-size:150%;
+	height: 50px;
+}
+table.table16m2b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table16m2b4k tr.c4{
+	font-size:130%;
+	height: 40px;
+}
+table.table16m2b4k tr.c5{
+	font-size:130%;
+	height: 34px;
+}
+table.table4m3b4k{	/*3/4拍子の最小音価が4分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table4m3b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table4m3b4k tr.c1{
+	font-size:70%;
+	height: 20px;
+}
+table.table4m3b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m3b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table4m3b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m3b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m3b4k{	/*3/4拍子の最小音価が8分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table8m3b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table8m3b4k tr.c1{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m3b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m3b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m3b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m3b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table16m3b4k{	/*3/4拍子の最小音価が16分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table16m3b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table16m3b4k tr.c1{
+	font-size:70%;
+	height: 20px;
+}
+table.table16m3b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table16m3b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table16m3b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table16m3b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m4b4k{	/*4/4拍子の最小音価が8分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table4m4b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table4m4b4k tr.c1{
+	font-size:70%;
+	height: 20px;
+}
+table.table4m4b4k tr.c2{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m4b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table4m4b4k tr.c4{
+	font-size:110%;
+	height: 30px;
+}
+table.table4m4b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+table.table8m4b4k{	/*4/4拍子の最小音価が8分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table8m4b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table8m4b4k tr.c1{
+	font-size:130%;
+	height: 50px;
+}
+table.table8m4b4k tr.c2{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m4b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table8m4b4k tr.c4{
+	font-size:130%;
+	height: 40px;
+}
+table.table8m4b4k tr.c5{
+	font-size:130%;
+	height: 34px;
+}
+table.table16m4b4k{	/*4/4拍子の最小音価が16分音符の数字(記号)楽譜テンプレート指定*/
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	table-layout:fixed;
+}
+table.table16m4b4k tr.c1,tr.c2,tr.c3,tr.c4{
+	background-color:#CEF6CE;
+}
+table.table16m4b4k tr.c1{
+	font-size:130%;
+	height: 50px;
+}
+table.table16m4b4k tr.c2{
+	font-size:120%;
+	height: 30px;
+}
+table.table16m4b4k tr.c3{
+	font-size:70%;
+	height: 20px;
+}
+table.table16m4b4k tr.c4{
+	font-size:130%;
+	height: 40px;
+}
+table.table16m4b4k tr.c5{
+	font-size:110%;
+	height: 30px;
+}
+
+
+

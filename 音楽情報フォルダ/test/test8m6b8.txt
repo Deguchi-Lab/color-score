@@ -1,0 +1,36 @@
+title=[test8m6b8]
+composer=[test]
+lyricist=[test]
+copyright=[]
+key=[0]
+tempo=[]
+minimum=[8]
+beat=[6/8]
+measure=[4]
+-	=1	
+C4	0	8	C
+D4	0	8	D
+E4	0	8	E			
+F4	0	8	F	
+G4	0	8	G
+A4	0	8	A		
+-	=2	
+C4	0	4	C	
+D4	0	8	D
+E4	0	8	E
+F4	0	8	F	
+G4	0	8	G	
+-	=3	
+C5	0	8	C	
+D4	0	8	D
+E4	0	8	E
+F6	0	8	F	
+G4	0	8	G
+A4	0	8	A	
+-	=4	
+C4	0	8	C	
+D4	0	8	D
+E4	0	8	E
+F4	0	8	F	
+G4	0	8	G
+A4	0	8	A	

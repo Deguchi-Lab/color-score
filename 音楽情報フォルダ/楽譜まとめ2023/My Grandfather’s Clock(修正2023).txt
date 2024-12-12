@@ -1,0 +1,161 @@
+title=[My Grandfather’s Clock]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[1]
+tempo=[None]]
+minimum=[16]
+beat=[4/4]
+measure=[25]
+-	=1
+00	0	4	
+00		4	
+00	0	4			
+D4	0	4	My		
+-	=2	
+G4	0	4	grand	
+F4	1	8	fa-	
+G4	0	8	ther’s	
+A4	0	4	clock	
+G4	0	8	Was	
+A4	0	8	too	
+-	=3	
+B4	0	4	large	
+C5	0	8	for	
+B4	0	8	the	
+E4	0	4	shelf,	
+A4	0	8	So	
+A4	0	8	it	
+-	=4	
+G4	0	4	stood	
+G4	0	8	nine	
+G4	0	8	ty	
+F4	1	4	years	
+E4	0	8	on	
+F4	1	8	the	
+-	=5	
+G4	0	2.	floor;	
+D4	0	8	It	
+D4	0	8	was	
+-	=6	
+G4	0	4	tall	
+F4	1	8	er	
+G4	0	8	by	
+A4	0	4	half	
+G4	0	8	Then	
+A4	0	8	the	
+-	=7	
+B4	0	4	old	
+C5	0	8	man	
+B4	0	8	him	
+E4	0	4	self,	
+A4	0	8	Though	
+A4	0	8	it		
+-	=8	
+G4	0	4	weighed	
+G4	0	8	not	
+G4	0	8	a	
+F4	1	8	pen-	
+E4	0	8	ny	
+F4	1	4	weight		
+-	=9	
+G4	0	2.	more.	
+G4	0	8	It	
+B4	0	8	was		
+-	=10	
+D5	0	4	bought	
+B4	0	8	on	
+A4	0	8	the	
+G4	0	4	mom,	
+F4	1	8	Of	
+G4	0	8	the		
+-	=11	
+A4	0	8	day	
+G4	0	8	that	
+F4	1	8	he	
+E4	0	8	was	
+D4	0	4	born.	
+G4	0	8	And	
+B4	0	8	was	
+-	=12	
+D5	0	4	al	
+B4	0	8	ways	
+A4	0	8	his	
+G4	0	4	trea	
+F4	1	8	sure	
+G4	0	8	and	
+-	=13	
+A4	0	2.	pride;	
+D4	0	8	But	
+D4	0	8	it	
+-	=14	
+G4	0	8	stopped	
+00		8	
+00		4		
+A4	0	8	short	
+00		8		
+00		4		
+-	=15	
+B4	0	16	Nev	
+B4	0	16	er	
+B4	0	8	to	
+C5	0	8	go	
+B4	0	8	a	
+E4	0	4	gain	
+A4	0	8	When	
+A4	0	8	the		
+-	=16	
+G4	0	2	old	
+F4	1	2	man		
+-	=17	
+G4	0	2.	died.	
+D4	0	8	Nine	
+D4	0	8	ty		
+-	=18	
+G4	0	4	years	
+D4	0	8	with	
+D4	0	8	out	
+E4	0	8	slum	
+D4	0	8	ber	
+D4	0	4	ing.	
+-	=19	
+B3	0	4	Tick,	
+D4	0	4	tock,	
+B3	0	4	tick,	
+D4	0	8	tock	
+D4	0	8	His	
+-	=20	
+G4	0	4	life	
+D4	0	8	sec	
+D4	0	8	onds	
+E4	0	8	num	
+D4	0	8	ber	
+D4	0	4	ing,	
+-	=21	
+B3	0	4	Tick,	
+D4	0	4	tock,	
+B3	0	4	tick,	
+D4	0	8	tock,	
+D4	0	8	It	
+-	=22	
+G4	0	8	stopped	
+00		8		
+00		4		
+A4	0	8	short	
+00		8		
+00		4		
+-	=23	
+B4	0	16	Nev	
+B4	0	16	er	
+B4	0	8	to	
+C5	0	8	go	
+B4	0	8	a	
+F4	1	4	gain,	
+A4	0	8	When	
+A4	0	8	the	
+-	=24	
+G4	0	2	old	
+F4	1	2	man	
+-	=25	
+G4	0	2.	died.	
+00		4		

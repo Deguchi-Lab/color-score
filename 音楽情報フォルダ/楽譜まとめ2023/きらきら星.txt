@@ -1,0 +1,63 @@
+title=[Twinkle, twinkle, little star!]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[0]
+tempo=[None]]
+minimum=[4]
+beat=[4/4]
+measure=[12]
+-	=1	
+C4	0	4	Twin-	
+C4	0	4	kle	
+G4	0	4	twin-	
+G4	0	4	kle	
+-	=2	
+A4	0	4	lit-	
+A4	0	4	tle	
+G4	0	2	star!	
+-	=3	
+F4	0	4	How	
+F4	0	4	I	
+E4	0	4	won-	
+E4	0	4	der	
+-	=4	
+D4	0	4	what	
+D4	0	4	you	
+C4	0	2	are.	
+-	=5	
+G4	0	4	Up	
+G4	0	4	a-	
+F4	0	4	bove	
+F4	0	4	the	
+-	=6	
+E4	0	4	world	
+E4	0	4	so	
+D4	0	2	high,	
+-	=7	
+G4	0	4	Like	
+G4	0	4	a	
+F4	0	4	diar-	
+F4	0	4	mond	
+-	=8	
+E4	0	4	in	
+E4	0	4	the	
+D4	0	2	sky.	
+-	=9	
+C4	0	4	Twin-	
+C4	0	4	kle	
+G4	0	4	twin-	
+G4	0	4	kle	
+-	=10	
+A4	0	4	lit-	
+A4	0	4	tle	
+G4	0	2	star!	
+-	=11	
+F4	0	4	How	
+F4	0	4	I	
+E4	0	4	won-	
+E4	0	4	der	
+-	=12	
+D4	0	4	what	
+D4	0	4	you	
+C4	0	2	are.	

@@ -1,0 +1,41 @@
+title=[ロンドン橋落ちた]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[-1]
+tempo=[None]]
+minimum=[16]
+beat=[2/4]
+measure=[8]
+-	=1	
+C5	0	8.	Lodn-	
+D5	0	16	don	
+C5	0	8	bridge	
+B4	-1	8	is	
+-	=2	
+A4	0	8	fall	
+B4	-1	8	ing	
+C5	0	4	down,	
+-	=3	
+G4	0	8	Fall	
+A4	0	8	ing	
+B4	-1	4	down,	
+-	=4	
+A4	0	8	fall	
+B4	-1	8	ing	
+C5	0	4	down,	
+-	=5	
+C5	0	8.	Lon	
+D5	0	16	don	
+C5	0	8	bridge	
+B4	-1	8	is	
+-	=6	
+A4	0	8	fall	
+B4	-1	8	in	
+C5	0	4	down,	
+-	=7	
+G4	0	4	My	
+C5	0	4	fair	
+-	=8	
+A4	0	8	la	
+F4	0	4.	dy.	

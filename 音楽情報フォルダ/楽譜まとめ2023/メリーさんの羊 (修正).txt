@@ -1,0 +1,40 @@
+﻿title=[メリーさんの羊]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[-1]
+tempo=[None]]
+minimum=[16]
+beat=[4/4]
+measure=[4]
+-	=1	
+A4	0	8.	Mar -	
+G4	0	16	ｙ	
+F4	0	8	had	
+G4	0	8	a	
+A4	0	8	lit	
+A4	0	8	tle	
+A4	0	4	lamb,	
+-	=2	
+G4	0	8	Lit	
+G4	0	8	tle	
+G4	0	4	lamb,	
+A4	0	8	lit	
+C5	0	8	tle	
+C5	0	4	lamb,		
+-	=3	
+A4	0	8.	Mar	
+G4	0	16	y	
+F4	0	8	had	
+G4	0	8	a	
+A4	0	8	lit	
+A4	0	8	tle	
+A4	0	8	lamb,	
+A4	0	8	its	
+-	=4	
+G4	0	8	fleece	
+G4	0	8	was	
+A4	0	8	white	
+G4	0	8	as	
+F4	0	4.	snow	
+00		8	 	

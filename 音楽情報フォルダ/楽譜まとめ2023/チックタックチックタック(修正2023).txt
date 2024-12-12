@@ -1,0 +1,49 @@
+title=[チックタック、チックタック]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[0]
+tempo=[None]]
+minimum=[8]
+beat=[6/8]
+measure=[8]
+-	=1	
+E4	0	8	Hick	
+F4	0	8	or-	
+G4	0	8	y,	
+F4	0	8	dick	
+E4	0	8	or	
+D4	0	8	y,		
+-	=2	
+E4	0	4.	dock,
+00		4	
+E4	0	8	The	
+-	=3	
+E4	0	4	mouse	
+G4	0	8	ran	
+F4	0	4	up	
+D4	0	8	the	
+-	=4	
+E4	0	4.	clock	
+00		4	
+E4	0	8	The	
+-	=5	
+E4	0	4	clock	
+E4	0	8	struck	
+G4	0	4	one,	
+G4	0	8	The	
+-	=6	
+F4	0	4	mouse	
+F4	0	8	ran	
+A4	0	4.	down.	
+-	=7	
+G4	0	8	Hick	
+A4	0	8	or	
+G4	0	8	y,	
+F4	0	8	dick-	
+E4	0	8	or	
+D4	0	8	y,	
+-	=8
+C4	0	4	dock
+00		2	
+

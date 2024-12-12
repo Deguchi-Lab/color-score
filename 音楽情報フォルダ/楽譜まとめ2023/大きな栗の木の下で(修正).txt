@@ -1,0 +1,52 @@
+title=[大きな栗の木の下で]
+composer=[None]
+lyricist=[None]
+copyright=[None]
+key=[0]
+tempo=[None]]
+minimum=[8]
+beat=[4/4]
+measure=[8]
+-	=1	
+C4	0	4	Un	
+C4	0	8	der	
+D4	0	8	the	
+E4	0	4	sprea	
+G4	0	4	ding		
+-	=2	
+E4	0	4	chest	
+D4	0	4	nut	
+C4	0	4	tree,	
+00		4	
+-	=3	
+E4	0	4	There	
+F4	0	4	we	
+G4	0	4	sit	
+C5	0	4	both		
+-	=4	
+A4	0	4	you	
+C5	0	4	and	
+G4	0	4	me,	
+00		4	
+-	=5	
+C5	0	4	Oh	
+C5	0	4	how	
+B4	0	4	hap	
+G4	0	4	py	
+-	=6	
+A4	0	4	we	
+A4	0	4	would	
+G4	0	4	be,	
+00		4	
+-	=7	
+C4	0	4	Un	
+C4	0	8	der	
+D4	0	8	the	
+E4	0	4	sprea	
+G4	0	4	ding	
+-	=8	
+E4	0	4	chest	
+D4	0	4	nut	
+C4	0	4	tree.	
+00		4	
+

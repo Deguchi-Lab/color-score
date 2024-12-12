@@ -1,0 +1,36 @@
+title=[test16m2b4]
+composer=[]
+lyricist=[]
+copyright=[]
+key=[0]
+tempo=[]]
+minimum=[16]
+beat=[2/4]
+measure=[5]
+-	=1	
+C4	0	4	C	
+D4	0	4	D	
+-	=2	
+E4	0	8	E	
+F4	0	8	F	
+A4	0	16	A	
+B4	0	16	B	
+C5	0	16	C	
+D5	0	16	D	
+-	=3	
+E5	0	16	E	
+F5	0	16	F	
+G5	0	16	G	
+A5	0	16	A	
+B5	0	16	B	
+C6	0	16	C	
+D6	0	16	D	
+E6	0	16	E	
+-	=4	
+F6	0	8.	F	
+F6	0	16	F	
+F6	0	8.	F	
+F6	0	16	F	
+-	=5	
+00	0	4	 	
+0	0	4	 	

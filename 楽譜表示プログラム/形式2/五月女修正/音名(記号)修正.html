@@ -1,0 +1,1436 @@
+<!--知能情報処理研修室2018-->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+ 	<meta charset="UTF-8">
+ 	<title>文字(記号)楽譜表示</title>
+	<link rel="stylesheet" href="gakuhu_onmei_kigou.css" type="text/css" id="yamada">
+</head>
+
+<body>
+  	<form name="myform">
+		<input name="myfile" type="file" />
+		<input type="button" name="window" value="新しいウィンドウで開く" onClick="WindowOpen()"><br>
+		<textarea name="output" cols="80" rows="10"></textarea>
+ 	</form>
+	<div id="textbox">
+    </div>
+	<div id="box1">
+	</div>
+
+	<script>
+		var form = document.forms.myform;
+
+		var m;
+    
+		form.myfile.addEventListener('change', function(e) {
+      			var result = e.target.files[0];
+
+			var reader = new FileReader();
+
+			reader.readAsText( result );
+
+			reader.addEventListener( 'load', function() {
+
+				form.output.textContent = reader.result;
+
+		//		console.log( reader.result.split('\n') );
+
+				var gyou = reader.result.split('\n');
+
+		//		console.log(gyou[0]);
+		//		console.log(gyou[1]);
+				
+				k = /[\[\]]/;
+
+				var title = gyou[0].split(k);
+                var composer = gyou[1].split(k);
+                var lyricist = gyou[2].split(k);
+                var copyright = gyou[3].split(k);
+                var key = gyou[4].split(k);
+                var tempo = gyou[5].split(k);
+				var minimum = gyou[6].split(k);				
+				var beat = gyou[7].split(k);
+				var measure = gyou[8].split(k);               //楽譜情報ファイル最初10行のデータの格納
+
+				var beattype = beat[1].split('\/');			//alterは分母と分子で分割
+
+				m = parseInt(measure[1],10);
+
+				var i;
+                
+                //ここから下はタイトル等の表示
+                
+                document.getElementById('textbox').innerHTML = '    <div id="titlebox"></div><div id="composerbox"></div><div id="lyricistbox"></div><div id="copyrightbox"></div><div id="tempobox"></div>';
+                document.getElementById('titlebox').innerHTML = title[1];
+                document.getElementById('composerbox').innerHTML = "作曲者:"+composer[1];
+                document.getElementById('lyricistbox').innerHTML = "作詞者:"+lyricist[1];
+                document.getElementById('copyrightbox').innerHTML = "コピーライト："+copyright[1];
+                document.getElementById('tempobox').innerHTML = "tempo="+tempo[1];
+
+				var score4m4b4 ='<table class = "table4m4b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score4m3b4 = '<table class = "table4m3b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score4m2b4 = '<table class = "table4m2b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score8m4b4 = '<table class = "table8m4b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td><td class = "c1-7"></td><td class = "c1-8"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td><td class = "c2-7"></td><td class = "c2-8"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td><td class = "c4-7"></td><td class = "c4-8"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td><td class = "c3-7"></td><td class = "c3-8"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td><td class = "c5-7"></td><td class = "c5-8"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score8m3b4 ='<table class = "table8m3b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score8m2b4 ='<table class = "table8m2b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score16m4b4 ='<table class = "table16m4b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td><td class = "c1-7"></td><td class = "c1-8"></td><td class = "c1-9"></td><td class = "c1-10"></td><td class = "c1-11"></td><td class = "c1-12"></td><td class = "c1-13"></td><td class = "c1-14"></td><td class = "c1-15"></td><td class = "c1-16"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td><td class = "c2-7"></td><td class = "c2-8"></td><td class = "c2-9"></td><td class = "c2-10"></td><td class = "c2-11"></td><td class = "c2-12"></td><td class = "c2-13"></td><td class = "c2-14"></td><td class = "c2-15"></td><td class = "c2-16"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td><td class = "c4-7"></td><td class = "c4-8"></td><td class = "c4-9"></td><td class = "c4-10"></td><td class = "c4-11"></td><td class = "c4-12"></td><td class = "c4-13"></td><td class = "c4-14"></td><td class = "c4-15"></td><td class = "c4-16"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td><td class = "c3-7"></td><td class = "c3-8"></td><td class = "c3-9"></td><td class = "c3-10"></td><td class = "c3-11"></td><td class = "c3-12"></td><td class = "c3-13"></td><td class = "c3-14"></td><td class = "c3-15"></td><td class = "c3-16"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td><td class = "c5-7"></td><td class = "c5-8"></td><td class = "c5-9"></td><td class = "c5-10"></td><td class = "c5-11"></td><td class = "c5-12"></td><td class = "c5-13"></td><td class = "c5-14"></td><td class = "c5-15"></td><td class = "c5-16"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score16m3b4 ='<table class = "table16m3b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td><td class = "c1-7"></td><td class = "c1-8"></td><td class = "c1-9"></td><td class = "c1-10"></td><td class = "c1-11"></td><td class = "c1-12"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td><td class = "c2-7"></td><td class = "c2-8"></td><td class = "c2-9"></td><td class = "c2-10"></td><td class = "c2-11"></td><td class = "c2-12"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td><td class = "c4-7"></td><td class = "c4-8"></td><td class = "c4-9"></td><td class = "c4-10"></td><td class = "c4-11"></td><td class = "c4-12"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td><td class = "c3-7"></td><td class = "c3-8"></td><td class = "c3-9"></td><td class = "c3-10"></td><td class = "c3-11"></td><td class = "c3-12"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td><td class = "c5-7"></td><td class = "c5-8"></td><td class = "c5-9"></td><td class = "c5-10"></td><td class = "c5-11"></td><td class = "c5-12"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score16m2b4 ='<table class = "table16m2b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td><td class = "c1-7"></td><td class = "c1-8"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td><td class = "c2-7"></td><td class = "c2-8"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td><td class = "c4-7"></td><td class = "c4-8"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td><td class = "c3-7"></td><td class = "c3-8"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td><td class = "c5-7"></td><td class = "c5-8"></td>'+
+						'</tr>'+
+						'</table><br>';
+				var score8m6b8 ='<table class = "table8m3b4k">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td>'+
+						'</tr>'+
+						'<tr class = "c6">'+
+							'<td class = "c6-1"></td><td class = "c6-2"></td><td class = "c6-3"></td><td class = "c6-4"></td><td class = "c6-5"></td><td class = "c6-6"></td>'+
+						'</tr>'+
+						'</table><br>';
+
+				var score16m6b8 ='<table class = "table16m3b4">'+
+						'<tr class = "c1">'+
+							'<td class = "c1-1"></td><td class = "c1-2"></td><td class = "c1-3"></td><td class = "c1-4"></td><td class = "c1-5"></td><td class = "c1-6"></td><td class = "c1-7"></td><td class = "c1-8"></td><td class = "c1-9"></td><td class = "c1-10"></td><td class = "c1-11"></td><td class = "c1-12"></td>'+
+						'</tr>'+
+						'<tr class = "c2">'+
+							'<td class = "c2-1"></td><td class = "c2-2"></td><td class = "c2-3"></td><td class = "c2-4"></td><td class = "c2-5"></td><td class = "c2-6"></td><td class = "c2-7"></td><td class = "c2-8"></td><td class = "c2-9"></td><td class = "c2-10"></td><td class = "c2-11"></td><td class = "c2-12"></td>'+
+						'</tr>'+
+						'<tr class = "c3">'+
+							'<td class = "c3-1"></td><td class = "c3-2"></td><td class = "c3-3"></td><td class = "c3-4"></td><td class = "c3-5"></td><td class = "c3-6"></td><td class = "c3-7"></td><td class = "c3-8"></td><td class = "c3-9"></td><td class = "c3-10"></td><td class = "c3-11"></td><td class = "c3-12"></td>'+
+						'</tr>'+
+						'<tr class = "c4">'+
+							'<td class = "c4-1"></td><td class = "c4-2"></td><td class = "c4-3"></td><td class = "c4-4"></td><td class = "c4-5"></td><td class = "c4-6"></td><td class = "c4-7"></td><td class = "c4-8"></td><td class = "c4-9"></td><td class = "c4-10"></td><td class = "c4-11"></td><td class = "c4-12"></td>'+
+						'</tr>'+
+						'<tr class = "c5">'+
+							'<td class = "c5-1"></td><td class = "c5-2"></td><td class = "c5-3"></td><td class = "c5-4"></td><td class = "c5-5"></td><td class = "c5-6"></td><td class = "c5-7"></td><td class = "c5-8"></td><td class = "c5-9"></td><td class = "c5-10"></td><td class = "c5-11"></td><td class = "c5-12"></td>'+
+						'</tr>'+
+						'<tr class = "c6">'+
+							'<td class = "c6-1"></td><td class = "c6-2"></td><td class = "c6-3"></td><td class = "c6-4"></td><td class = "c6-5"></td><td class = "c6-6"></td><td class = "c6-7"></td><td class = "c6-8"></td><td class = "c6-9"></td><td class = "c6-10"></td><td class = "c6-11"></td><td class = "c6-12"></td>'+
+						'</tr>'+
+						'</table><br>';
+				
+				var scorebox = document.getElementById("box1");
+				var dan = 0;
+
+
+				if(minimum[1]==4 && beattype[0]==4 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m4b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m4b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m4b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m4b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m4b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m4b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m4b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m4b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==4 && beattype[0]==3 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m3b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m3b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m3b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m3b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m3b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m3b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m3b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m3b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==4 && beattype[0]==2 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m2b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m2b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m2b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m2b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m2b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m2b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score4m2b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score4m2b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==8 && beattype[0]==4 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m4b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m4b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m4b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m4b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m4b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m4b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m4b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m4b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==8 && beattype[0]==3 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m3b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m3b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m3b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m3b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m3b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m3b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m3b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m3b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==8 && beattype[0]==2 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m2b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m2b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m2b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m2b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m2b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m2b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m2b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m2b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==16 && beattype[0]==4 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%2)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mm'+i+'>　'+score16m4b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mm'+i+'>第'+(i+1)+'小節'+score16m4b4+'</div>');
+								}
+						}
+						if((i%2)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mm'+i+'>　'+score16m4b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mm'+i+'>第'+(i+1)+'小節'+score16m4b4+'</div>');
+								}
+						}
+					}
+					dan = 2;
+				}
+
+				if(minimum[1]==16 && beattype[0]==3 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m3b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m3b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m3b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m3b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m3b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m3b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m3b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m3b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+
+				if(minimum[1]==16 && beattype[0]==2 && beattype[1]==4){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m2b4+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m2b4+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m2b4+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m2b4+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m2b4+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m2b4+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m2b4+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m2b4+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==8 && beattype[0]==6 && beattype[1]==8){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m6b8+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m6b8+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m6b8+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m6b8+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m6b8+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m6b8+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score8m6b8+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score8m6b8+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+				if(minimum[1]==16 && beattype[0]==6 && beattype[1]==8){
+					scorebox.innerHTML='	<table><tr><td id="box2"></td><td id="box3"></td><td id="box4"></td><td id="box5"></td></tr></table>';
+					var scorebox2 = document.getElementById("box2");
+					var scorebox3 = document.getElementById("box3");
+					var scorebox4 = document.getElementById("box4");
+					var scorebox5 = document.getElementById("box5");
+					var mmeasure = parseInt(measure[1],10)+(4-parseInt(measure[1],10)%4);
+					if(parseInt(measure[1],10)%4==0){
+						mmeasure=parseInt(measure[1],10);
+					}
+					for(i=0; i<mmeasure; i++){
+						if((i%4)==0){
+								if(i>=parseInt(measure[1],10)){
+									scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m6b8+'</div>');
+								}
+								else{
+        								scorebox2.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m6b8+'</div>');
+								}
+						}
+						if((i%4)==1){
+								if(i>=parseInt(measure[1],10)){
+									scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m6b8+'</div>');
+								}
+								else{
+        								scorebox3.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m6b8+'</div>');
+								}
+						}
+						if((i%4)==2){
+								if(i>=parseInt(measure[1],10)){
+									scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m6b8+'</div>');
+								}
+								else{
+        								scorebox4.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m6b8+'</div>');
+								}
+						}
+						if((i%4)==3){
+								if(i>=parseInt(measure[1],10)){
+									scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>　'+score16m6b8+'</div>');
+								}
+								else{
+        								scorebox5.insertAdjacentHTML('beforeend','<div id=mmmm'+i+'>第'+(i+1)+'小節'+score16m6b8+'</div>');
+								}
+						}
+					}
+					dan = 4;
+				}
+
+
+				var note = new Array;
+		//		note[4] = gyou[4].split('\t');
+
+				for(var i=10;i<gyou.length;i++){
+					note[i] =gyou[i].split('\t');
+		//			console.log(note[i][3]);
+		//			console.log(i);
+				}
+
+		//		console.log(note[5][0]);
+		//		console.log(note[5][1]);
+		//		console.log(note[5][2]);
+		//		console.log(note[5][3]);
+				
+				var j=0;
+				var jsub=0;
+				var k=0;			
+
+				for(var i=10;i<gyou.length;i++){
+
+		//			var mbox = document.getElementById("m"+j);
+
+					if(note[i][0]=='-'){
+						jsub++;
+						if(dan==2){
+							if((jsub%2)==0){
+								j=jsub/2;
+							}
+							if((jsub%2)==1){
+								j=Math.floor(mmeasure/2)+Math.floor(jsub/2);
+							}
+						}
+						if(dan==3){
+							if((jsub%3)==0){
+								j=jsub/3;
+							}
+							if((jsub%3)==1){
+								j=Math.floor(mmeasure/3)+Math.floor(jsub/3);
+							}
+							if((jsub%3)==2){
+								j=Math.floor(mmeasure/3)*2+Math.floor(jsub/3);
+							}
+						}
+						if(dan==4){
+							if((jsub%4)==0){
+								j=jsub/4;
+							}
+							if((jsub%4)==1){
+								j=Math.floor(mmeasure/4)+Math.floor(jsub/4);
+							}
+							if((jsub%4)==2){
+								j=Math.floor(mmeasure/4)*2+Math.floor(jsub/4);
+							}
+							if((jsub%4)==3){
+								j=Math.floor(mmeasure/4)*3+Math.floor(jsub/4);
+							}
+						}
+
+						k=0;
+					}
+
+
+					if((note[i][2]=='8'||note[i][2]=='4'||note[i][2]=='2'||note[i][2]=='8.'||note[i][2]=='4.'||note[i][2]=='2.') && minimum[1]=='16'){
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						var c4 = document.getElementsByClassName("c4-"+(k+1));
+						var c5 = document.getElementsByClassName("c5-"+(k+1));
+						c1[j].setAttribute('colspan','2');
+						c2[j].setAttribute('colspan','2');
+						c3[j].setAttribute('colspan','2');
+						c4[j].setAttribute('colspan','2');
+						c5[j].setAttribute('colspan','2');
+						var cc1 = document.getElementsByClassName("c1-"+(k+2));
+						var cc2 = document.getElementsByClassName("c2-"+(k+2));
+						var cc3 = document.getElementsByClassName("c3-"+(k+2));
+						var cc4 = document.getElementsByClassName("c4-"+(k+2));
+						var cc5 = document.getElementsByClassName("c5-"+(k+2));
+
+						if(cc1[j]!==undefined){
+							var cc1_parent = cc1[j].parentNode;
+							//cc1_parent.removeChild(cc1[j]);
+							cc1[j].setAttribute('style','width:0px');
+						}
+						if(cc2[j]!==undefined){
+							var cc2_parent = cc2[j].parentNode;
+							//cc2_parent.removeChild(cc2[j]);
+							cc2[j].setAttribute('style','width:0px');
+
+						}
+						if(cc3[j]!==undefined){
+							var cc3_parent = cc3[j].parentNode;
+							//cc3_parent.removeChild(cc3[j]);
+							cc3[j].setAttribute('style','width:0px');
+
+						}
+						if(cc4[j]!==undefined){
+							var cc4_parent = cc4[j].parentNode;
+							//cc4_parent.removeChild(cc4[j]);
+							cc4[j].setAttribute('style','width:0px');
+
+						}
+						if(cc5[j]!==undefined){
+							var cc5_parent = cc5[j].parentNode;
+							//cc5_parent.removeChild(cc5[j]);
+							cc5[j].setAttribute('style','width:0px');
+
+						}													
+					}
+		
+					if(note[i][0]=='C4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ド';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ド+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ド-';
+						}
+					}
+					if(note[i][0]=='D4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='レ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='レ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='レ-';
+						}
+					}
+					if(note[i][0]=='E4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ミ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ミ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ミ-';
+						}
+					}
+					if(note[i][0]=='F4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ファ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ファ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ファ-';
+						}
+					}
+					if(note[i][0]=='G4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ソ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ソ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ソ-';
+						}
+					}
+					if(note[i][0]=='A4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ラ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ラ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ラ-';
+						}
+					}
+					if(note[i][0]=='B4'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='シ';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='シ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='シ-';
+						}
+					}
+					if(note[i][0]=='C3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ド';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ド+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ド-';
+						}
+					}
+					if(note[i][0]=='D3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='レ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='レ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='レ-';
+						}
+					}
+					if(note[i][0]=='E3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ミ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ミ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ミ-';
+						}
+					}
+					if(note[i][0]=='F3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ファ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ファ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ファ-';
+						}
+					}
+					if(note[i][0]=='G3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ソ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ソ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ソ-';
+						}
+					}
+					if(note[i][0]=='A3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ラ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[4][1]=='1'){
+							c2[j].innerHTML='ラ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ラ-';
+						}
+					}
+					if(note[i][0]=='B3'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='シ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='シ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='シ-';
+						}
+					}
+					if(note[i][0]=='C5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ド';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ド+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ド-';
+						}
+					}
+					if(note[i][0]=='D5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='レ';
+						var c1= document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='レ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='レ-';
+						}
+					}
+					if(note[i][0]=='E5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ミ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ミ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ミ-';
+						}
+					}
+					if(note[i][0]=='F5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ファ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ファ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ファ-';
+						}
+					}
+					if(note[i][0]=='G5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ソ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ソ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ソ-';
+						}
+					}
+					if(note[i][0]=='A5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ラ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ラ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ラ-';
+						}
+					}
+					if(note[i][0]=='B5'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='シ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='・';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='シ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='シ-';
+						}
+					}
+
+					if(note[i][0]=='C2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ド';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ド+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ド-';
+						}
+					}
+					if(note[i][0]=='D2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='レ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='レ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='レ-';
+						}
+					}
+					if(note[i][0]=='E2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ミ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ミ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ミ-';
+						}
+					}
+					if(note[i][0]=='F2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ファ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ファ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ファ-';
+						}
+					}
+					if(note[i][0]=='G2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ソ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ソ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ソ-';
+						}
+					}
+					if(note[i][0]=='A2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ラ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[4][1]=='1'){
+							c2[j].innerHTML='ラ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ラ-';
+						}
+					}
+					if(note[i][0]=='B2'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='シ';
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='シ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='シ-';
+						}
+					}
+					if(note[i][0]=='C6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ド';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ド+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ド-';
+						}
+					}
+					if(note[i][0]=='D6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='レ';
+						var c1= document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='レ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='レ-';
+						}
+					}
+					if(note[i][0]=='E6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ミ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ミ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ミ-';
+						}
+					}
+					if(note[i][0]=='F6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ファ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ファ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ファ-';
+						}
+					}
+					if(note[i][0]=='G6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ソ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ソ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ソ-';
+						}
+					}
+					if(note[i][0]=='A6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='ラ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='ラ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='ラ-';
+						}
+					}
+					if(note[i][0]=='B6'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='シ';
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].innerHTML='‥';
+						if(note[i][1]=='1'){
+							c2[j].innerHTML='シ+';
+						}
+						if(note[i][1]=='-1'){
+							c2[j].innerHTML='シ-';
+						}
+					}
+
+					if(note[i][0]=='0'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='';
+					//	c2[j].setAttribute('style','background-color:red');
+					//	c2[j].setAttribute('style','border-left:solid 5px');
+					}
+
+
+					if(note[i][0]=='00'){
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].innerHTML='0';
+					//	c2[j].setAttribute('style','background-color:red');
+					//	c2[j].setAttribute('style','border-left:solid 5px');
+					}
+
+					if(note[i][2]=='1' && note[i][0]!=='0'){
+						var kk = k+(parseInt(minimum[1],10)/4);
+						var c2 = document.getElementsByClassName("c2-"+(kk+1));
+						c2[j].innerHTML='－';
+						kk = kk+(parseInt(minimum[1],10)/4);
+						var c2 = document.getElementsByClassName("c2-"+(kk+1));
+						c2[j].innerHTML='－';
+						kk = kk+(parseInt(minimum[1],10)/4);
+						var c2 = document.getElementsByClassName("c2-"+(kk+1));
+						c2[j].innerHTML='－';
+					}
+					if(note[i][2]=='2' && note[i][0]!=='0'){
+						var kk = k+(parseInt(minimum[1],10)/4);
+						var c2 = document.getElementsByClassName("c2-"+(kk+1));
+						c2[j].innerHTML='－';
+					}
+					if(note[i][2]=='8' && note[i][0]!=='0'){
+						var c4 = document.getElementsByClassName("c4-"+(k+1));
+						c4[j].innerHTML='－';
+					}
+					if(note[i][2]=='16'&& note[i][0]!=='0'){
+						var c4 = document.getElementsByClassName("c4-"+(k+1));
+						c4[j].innerHTML='＝';
+					}
+
+				/*	if(note[i][2]=='16'){
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						var c4 = document.getElementsByClassName("c4-"+(k+1));
+						var c5 = document.getElementsByClassName("c5-"+(k+1));
+						c3[j].setAttribute('style','border-left:solid 2px; border-right:solid 2px;');
+						c4[j].setAttribute('style','border-left:solid 2px; border-right:solid 2px;');
+						c5[j].setAttribute('style','border-left:solid 2px; border-right:solid 2px;');
+					}												*/
+
+					if(note[i][3]!==null  && note[i][3]!==undefined){
+						var c5 = document.getElementsByClassName("c5-"+(k+1));
+						c5[j].innerHTML=note[i][3];
+					}			
+
+
+					if(note[i][0]!=='-'){
+					/*	var x=document.getElementById("yamada");
+						console.log(x.href);
+						var c1 = document.getElementsByClassName("c1-"+(k+1));
+						c1[j].setAttribute('style','border-left:solid 2px');
+						var c2 = document.getElementsByClassName("c2-"+(k+1));
+						c2[j].setAttribute('style','border-left:solid 2px');
+						var c3 = document.getElementsByClassName("c3-"+(k+1));
+						c3[j].setAttribute('style','border-left:solid 2px');		*/
+
+		//				k=k+(parseInt(minimum[1],10)/parseInt(note[i][2],10));
+
+						if(note[i][2]=='32'){
+							k=k+(parseInt(minimum[1],10)/32);
+						}
+						if(note[i][2]=='32.'){
+							var c2 = document.getElementsByClassName("c2-"+(k+1));
+							c2[j].insertAdjacentHTML('beforeend','.');
+							k=k+((parseInt(minimum[1],10)/32)*1.5);
+						}
+						if(note[i][2]=='16'){
+							k=k+(parseInt(minimum[1],10)/16);
+						}
+						if(note[i][2]=='16.'){
+							var c2 = document.getElementsByClassName("c2-"+(k+1));
+							c2[j].insertAdjacentHTML('beforeend','.');
+							k=k+((parseInt(minimum[1],10)/16)*1.5);
+						}
+						if(note[i][2]=='8'){
+							k=k+(parseInt(minimum[1],10)/8);
+						}
+						if(note[i][2]=='8.'){
+							var c2 = document.getElementsByClassName("c2-"+(k+1));
+							c2[j].insertAdjacentHTML('beforeend','.');
+							k=k+((parseInt(minimum[1],10)/8)*1.5);
+						}
+						if(note[i][2]=='4'){
+							k=k+(parseInt(minimum[1],10)/4);
+						}
+						if(note[i][2]=='4.'){
+							var c2 = document.getElementsByClassName("c2-"+(k+1));
+							c2[j].insertAdjacentHTML('beforeend','.');
+							k=k+((parseInt(minimum[1],10)/4)*1.5);
+						}
+						if(note[i][2]=='2'){
+							k=k+(parseInt(minimum[1],10)/2);
+						}
+						if(note[i][2]=='2.'){
+							var c2 = document.getElementsByClassName("c2-"+(k+1));
+							c2[j].insertAdjacentHTML('beforeend','.');
+							k=k+((parseInt(minimum[1],10)/2)*1.5);
+						}
+
+					}
+
+				}
+
+			})
+
+		})
+
+		function WindowOpen(){
+			var scorebox = document.getElementById("box1");	
+			var nwin = window.open("","_blank");
+
+			window.location.reload();	//親ページを更新
+
+			nwin.document.open();			
+			nwin.document.write('<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>楽譜表示</title><link rel="stylesheet" href="gakuhu_color.css" type="text/css"></head><body></body></html>');
+			nwin.document.body.appendChild(textbox);
+			nwin.document.body.appendChild(scorebox);
+			nwin.document.body.appendChild(titlebox);
+			nwin.document.body.appendChild(composerbox);
+			nwin.document.body.appendChild(lyricistbox);
+			nwin.document.body.appendChild(copyrightbox);
+			nwin.document.body.appendChild(tempobox);
+
+		}
+
+	</script>
+</body>
+</html>

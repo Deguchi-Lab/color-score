@@ -1,0 +1,78 @@
+title=[幸せなら手をたたこう]
+composer=[木村利人]
+lyricist=[木村利人]
+copyright=[None]
+key=[-2]
+tempo=[None]]
+minimum=[16]
+beat=[4/4]
+measure=[9]
+-	=1
+00		4	
+00		4			
+00		4	
+F4	0	8.	If	
+F4	0	16	you're		
+-	=2	
+B4	-1	8.	hap-	
+B4	-1	16	py	
+B4	-1	8.	and	
+B4	-1	16	you	
+B4	-1	8.	know	
+B4	-1	16	it,	
+A4	0	8.	Clap	
+B4	-1	16	your	
+-	=3	
+C5	0	4	hands,	
+00		4	
+00		4	
+F4	0	8.	If	
+F4	0	16	you're	
+-	=4	
+C5	0	8.	hap	
+C5	0	16	py	
+C5	0	8.	and	
+C5	0	16	you	
+C5	0	8.	know	
+C5	0	16	it,	
+B4	-1	8.	Clap	
+C5	0	16	your	
+-	=5	
+D5	0	4	hands,	
+00		4	
+00		4	
+D5	0	8	If	
+D5	0	8	you're	
+-	=6	
+E5	-1	8	hap-	
+E5	-1	8	py	
+E5	-1	8	and	
+E5	-1	8	you	
+G4	0	8	know	
+G4	0	8	it,	
+E5	-1	8	Then	
+E5	-1	8	your	
+-	=7	
+D5	0	8	face	
+D5	0	8	will	
+D5	0	8	sure	
+C5	0	8	ly	
+B4	-1	8	snow	
+B4	-1	8	it,	
+D5	0	8	If	
+D5	0	8	you're	
+-	=8	
+C5	0	8	hap	
+C5	0	8	py	
+C5	0	8	and	
+C5	0	8	you	
+A4	0	8	know	
+A4	0	8	it,	
+G4	0	8	Clap	
+A4	0	8	your		
+-	=9	
+B4	-1	4	hands.	
+00		4	
+00		4	
+00		4		
+

@@ -1,0 +1,341 @@
+/* 知能情報処理研究室2018~2023 */
+
+
+#textbox{
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+}
+
+#titlebox{
+    font-size: 28px;
+}
+
+#composerbox,#lyricistbox{
+    float: left;
+    width: 50%;
+    font-size: 22px;
+}
+
+#copyrightbox{
+    font-size: 18px;
+    text-align: left;
+    border-bottom: solid 1px black;
+}
+
+#tempobox{
+    text-align: left;
+}
+
+/* 2/4 min4 */
+table.table4m2b4{				/*2/4拍子の最小音価が4分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table4m2b4 tr.c1{ height: 30px;}
+table.table4m2b4 tr.c2{ height: 60px;}
+table.table4m2b4 tr.c3{ height: 30px;}
+table.table4m2b4 tr.c4{ height: 30px;}
+table.table4m2b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+/*小節の周りの枠線*/
+table.table4m2b4 tr.c4{ border-bottom:solid 2px;}
+table.table4m2b4 td.c1-1{ border-left:solid 2px;}
+table.table4m2b4 td.c2-1{ border-left:solid 2px;}
+table.table4m2b4 td.c3-1{ border-left:solid 2px;}
+table.table4m2b4 td.c4-1{ border-left:solid 2px;}
+table.table4m2b4 td.c1-2{ border-right:solid 2px;} /*td1~3はcolspanで連結させている*/
+table.table4m2b4 td.c2-2{ border-right:solid 2px;} 
+table.table4m2b4 td.c3-2{ border-right:solid 2px;} 
+
+/*横線*/
+table.table4m2b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table4m2b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table4m2b4 tr.c4 td{ border-right:solid 2px;} 
+ 
+
+
+
+/* 3/4 min4 */
+table.table4m3b4{				/*3/4拍子の最小音価が4分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table4m3b4 tr.c1{ height: 30px;}
+table.table4m3b4 tr.c2{ height: 60px;}
+table.table4m3b4 tr.c3{ height: 30px;}
+table.table4m3b4 tr.c4{ height: 30px;}
+table.table4m3b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+/*小節の周りの枠線*/
+table.table4m3b4 tr.c4{ border-bottom:solid 2px;}
+table.table4m3b4 td.c1-1{ border-left:solid 2px;}
+table.table4m3b4 td.c2-1{ border-left:solid 2px;}
+table.table4m3b4 td.c3-1{ border-left:solid 2px;}
+table.table4m3b4 td.c4-1{ border-left:solid 2px;}
+table.table4m3b4 td.c1-3{ border-right:solid 2px;} /*td1~3はcolspanで連結させている*/
+table.table4m3b4 td.c2-3{ border-right:solid 2px;} 
+table.table4m3b4 td.c3-3{ border-right:solid 2px;} 
+
+/*横線*/
+table.table4m3b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table4m3b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table4m3b4 tr.c4 td{ border-right:solid 2px;} 
+
+
+
+/* 4/4 min4 */
+table.table4m4b4{				/*4/4拍子の最小音価が4分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table4m4b4 tr.c1{ height: 30px;}
+table.table4m4b4 tr.c2{ height: 60px;}
+table.table4m4b4 tr.c3{ height: 30px;}
+table.table4m4b4 tr.c4{ height: 30px;}
+table.table4m4b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+/*小節の周りの枠線*/
+table.table4m4b4 tr.c4{ border-bottom:solid 2px;}
+table.table4m4b4 td.c1-1{ border-left:solid 2px;}
+table.table4m4b4 td.c2-1{ border-left:solid 2px;}
+table.table4m4b4 td.c3-1{ border-left:solid 2px;}
+table.table4m4b4 td.c4-1{ border-left:solid 2px;}
+table.table4m4b4 td.c1-4{ border-right:solid 2px;} /*td1~3はcolspanで連結させている*/
+table.table4m4b4 td.c2-4{ border-right:solid 2px;} 
+table.table4m4b4 td.c3-4{ border-right:solid 2px;} 
+
+/*横線*/
+table.table4m4b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table4m4b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table4m4b4 tr.c4 td{ border-right:solid 2px;}
+
+
+
+/* 2/4 min8 */
+table.table8m2b4{				/*2/4拍子の最小音価が8分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table8m2b4 tr.c1{ height: 30px;}
+table.table8m2b4 tr.c2{ height: 60px;}
+table.table8m2b4 tr.c3{ height: 30px;}
+table.table8m2b4 tr.c4{ height: 30px;}
+table.table8m2b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table8m2b4 tr.c4{ border-bottom:solid 2px;}
+table.table8m2b4 td.c1-1{ border-left:solid 2px;}
+table.table8m2b4 td.c2-1{ border-left:solid 2px;}
+table.table8m2b4 td.c3-1{ border-left:solid 2px;}
+table.table8m2b4 td.c4-1{ border-left:solid 2px;}
+table.table8m2b4 td.c1-4{ border-right:solid 2px;} 
+table.table8m2b4 td.c2-4{ border-right:solid 2px;} 
+table.table8m2b4 td.c3-4{ border-right:solid 2px;} 
+
+/*横線*/
+table.table8m2b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table8m2b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table8m2b4 tr.c4 td{ border-right:solid 2px;} 
+
+
+
+
+/* 3/4 min8 */
+table.table8m3b4{				/*3/4拍子の最小音価が8分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table8m3b4 tr.c1{ height: 30px;}
+table.table8m3b4 tr.c2{ height: 60px;}
+table.table8m3b4 tr.c3{ height: 30px;}
+table.table8m3b4 tr.c4{ height: 30px;}
+table.table8m3b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table8m3b4 tr.c4{ border-bottom:solid 2px;}
+table.table8m3b4 td.c1-1{ border-left:solid 2px;}
+table.table8m3b4 td.c2-1{ border-left:solid 2px;}
+table.table8m3b4 td.c3-1{ border-left:solid 2px;}
+table.table8m3b4 td.c4-1{ border-left:solid 2px;}
+table.table8m3b4 td.c1-6{ border-right:solid 2px;} 
+table.table8m3b4 td.c2-6{ border-right:solid 2px;} 
+table.table8m3b4 td.c3-6{ border-right:solid 2px;} 
+
+/*横線*/
+table.table8m3b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table8m3b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table8m3b4 tr.c4 td{ border-right:solid 2px;} 
+
+
+
+/* 4/4 min8 */
+table.table8m4b4{				/*4/4拍子の最小音価が8分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table8m4b4 tr.c1{ height: 30px;}
+table.table8m4b4 tr.c2{ height: 60px;}
+table.table8m4b4 tr.c3{ height: 30px;}
+table.table8m4b4 tr.c4{ height: 30px;}
+table.table8m4b4 tr.c5{ height: 50px; font-size: 150%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table8m4b4 tr.c4{ border-bottom:solid 2px;}
+table.table8m4b4 td.c1-1{ border-left:solid 2px;}
+table.table8m4b4 td.c2-1{ border-left:solid 2px;}
+table.table8m4b4 td.c3-1{ border-left:solid 2px;}
+table.table8m4b4 td.c4-1{ border-left:solid 2px;}
+table.table8m4b4 td.c1-8{ border-right:solid 2px;} 
+table.table8m4b4 td.c2-8{ border-right:solid 2px;} 
+table.table8m4b4 td.c3-8{ border-right:solid 2px;} 
+
+/*横線*/
+table.table8m4b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table8m4b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table8m4b4 tr.c4 td{ border-right:solid 2px;} 
+
+
+
+/* 2/4 min16 */
+table.table16m2b4{				/*2/4拍子の最小音価が16分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table16m2b4 tr.c1{ height: 30px;}
+table.table16m2b4 tr.c2{ height: 60px;}
+table.table16m2b4 tr.c3{ height: 30px;}
+table.table16m2b4 tr.c4{ height: 30px;}
+table.table16m2b4 tr.c5{ height: 50px; font-size: 70%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table16m2b4 tr.c4{ border-bottom:solid 2px;}
+table.table16m2b4 td.c1-1{ border-left:solid 2px;}
+table.table16m2b4 td.c2-1{ border-left:solid 2px;}
+table.table16m2b4 td.c3-1{ border-left:solid 2px;}
+table.table16m2b4 td.c4-1{ border-left:solid 2px;}
+table.table16m2b4 td.c1-8{ border-right:solid 2px;} 
+table.table16m2b4 td.c2-8{ border-right:solid 2px;} 
+table.table16m2b4 td.c3-8{ border-right:solid 2px;} 
+table.table16m2b4 td.c4-8{ border-right:solid 2px;} 
+
+/*横線*/
+table.table16m2b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table16m2b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table16m2b4 td.c4-3{ border-left:solid 2px;} 
+table.table16m2b4 td.c4-5{ border-left:solid 2px;} 
+table.table16m2b4 td.c4-7{ border-left:solid 2px;} 
+
+
+
+/* 3/4 min16 */
+table.table16m3b4{				/*3/4拍子の最小音価が16分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table16m3b4 tr.c1{ height: 30px;}
+table.table16m3b4 tr.c2{ height: 60px;}
+table.table16m3b4 tr.c3{ height: 30px;}
+table.table16m3b4 tr.c4{ height: 30px;}
+table.table16m3b4 tr.c5{ height: 50px; font-size: 140%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table16m3b4 tr.c4{ border-bottom:solid 2px;}
+table.table16m3b4 td.c1-1{ border-left:solid 2px;}
+table.table16m3b4 td.c2-1{ border-left:solid 2px;}
+table.table16m3b4 td.c3-1{ border-left:solid 2px;}
+table.table16m3b4 td.c4-1{ border-left:solid 2px;}
+table.table16m3b4 td.c1-12{ border-right:solid 2px;} 
+table.table16m3b4 td.c2-12{ border-right:solid 2px;} 
+table.table16m3b4 td.c3-12{ border-right:solid 2px;} 
+table.table16m3b4 td.c4-12{ border-right:solid 2px;} 
+
+/*横線*/
+table.table16m3b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table16m3b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table16m3b4 td.c4-3{ border-left:solid 2px;} 
+table.table16m3b4 td.c4-5{ border-left:solid 2px;} 
+table.table16m3b4 td.c4-7{ border-left:solid 2px;} 
+table.table16m3b4 td.c4-9{ border-left:solid 2px;} 
+table.table16m3b4 td.c4-11{ border-left:solid 2px;} 
+
+
+
+/* 4/4 min16 */
+table.table16m4b4{				/*4/4拍子の最小音価が16分音符の色楽譜テンプレート指定*/
+	border-collapse: collapse;	/*隣接するセルのボーダーを重ねる*/
+	text-align:center;			/*中央揃え*/
+	width: 100%;				/*幅の指定*/
+	table-layout:fixed;			/*テーブル（表）の列幅を固定*/
+}
+
+table.table16m4b4 tr.c1{ height: 30px;}
+table.table16m4b4 tr.c2{ height: 60px;}
+table.table16m4b4 tr.c3{ height: 30px;}
+table.table16m4b4 tr.c4{ height: 30px;}
+table.table16m4b4 tr.c5{ height: 50px; font-size: 140%; white-space: nowrap;}
+
+
+/*小節の周りの枠線*/
+table.table16m4b4 tr.c4{ border-bottom:solid 2px;}
+table.table16m4b4 td.c1-1{ border-left:solid 2px;}
+table.table16m4b4 td.c2-1{ border-left:solid 2px;}
+table.table16m4b4 td.c3-1{ border-left:solid 2px;}
+table.table16m4b4 td.c4-1{ border-left:solid 2px;}
+table.table16m4b4 td.c1-16{ border-right:solid 2px;} 
+table.table16m4b4 td.c2-16{ border-right:solid 2px;} 
+table.table16m4b4 td.c3-16{ border-right:solid 2px;} 
+table.table16m4b4 td.c4-16{ border-right:solid 2px;} 
+
+/*横線*/
+table.table16m4b4 tr.c1{ border-top:solid 2px; border-bottom:solid 2px;} 
+table.table16m4b4 tr.c3{ border-top:solid 2px; border-bottom:solid 2px;} 
+/*縦線*/
+table.table16m4b4 td.c4-3{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-5{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-7{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-9{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-11{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-13{ border-left:solid 2px;} 
+table.table16m4b4 td.c4-15{ border-left:solid 2px;} 
+
+
+

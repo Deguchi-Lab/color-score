@@ -1,0 +1,17 @@
+title=[testichou]
+composer=[test]
+lyricist=[test]
+copyright=[]
+key=[0]
+tempo=[]
+minimum=[8]
+beat=[3/4]
+measure=[2]
+-	=1	
+A3	1	4	A3+
+G4	0	4	G4
+F4	1	4	F4+		
+-	=2	
+B5	0	4.	B5
+C4	1	8	C4+
+D4	0	4	D4	

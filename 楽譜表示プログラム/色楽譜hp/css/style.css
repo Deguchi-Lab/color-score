@@ -1,0 +1,59 @@
+/* 知能情報処理研修室2023 */
+@charset "utf-8";
+
+h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.gakuhu_sentaku{
+    margin: 30px 40px 0 40px;           /*親要素の配置*/
+    display: grid;                      /*配置の種類*/
+    grid-template-columns:1fr 1fr;      /*２列*/
+    grid-auto-rows: 17rem;              /*行の幅*/
+    row-gap: 4rem;
+    /* background-color: rgb(88, 236, 96); */
+}
+
+.gakuhu_sentaku div{
+    text-align: center;                 /*ボタンの配置*/
+}
+
+.button{
+    width: 50%;                         /*ボタンの横幅*/
+    padding: 5px;                      /*ボタンの文字からの立幅*/
+    text-align: center;                 /*文字の配置*/
+    border: 2px solid #003f8e;        /*ボタンの枠線*/
+    border-radius: 40px;                /*丸み*/
+    font-size: 23px;                    /*文字の大きさ*/
+    color: #000;                      /*文字の色*/
+    background-color: #0068b7;        /*ボタンの背景*/
+}
+
+.button:hover {   /*ボタン上に来た時の色 */
+    background-color: #003f8e; 
+}
+
+a:link, a:visited { /*リンクのもともとの色と、リンク踏んだ後の色*/
+    color: white;
+    text-decoration: none; /*リンク下の線を消す*/
+}
+
+.img {
+    text-align: center;             /*画像のpタグを真ん中に*/
+}
+
+/*  色を付けるとそれぞれの領域が分かりやすいので確認のために使用した。
+
+ .gakuhu_img {
+    background-color: rgb(236, 88, 231);
+}
+.gakuhu_ue {
+    background-color: rgb(236, 194, 88);
+}
+.gakuhu_naka1 {
+    background-color: rgb(236, 194, 88);
+}
+.gakuhu_naka2 {
+    background-color: rgb(236, 194, 88);
+} */
